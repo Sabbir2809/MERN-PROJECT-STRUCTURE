@@ -1,5 +1,4 @@
 // Dependencies
-const path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -11,28 +10,18 @@ require('dotenv').config();
 const morgan = require('morgan');
 const router = require('./src/routes/api');
 
-// Developer Dependencies
-app.use(morgan('dev'));
-
-// Security Middleware
+// Middleware
 app.use(cors());
 app.use(helmet());
 app.use(hpp());
 app.use(mongoSanitize());
 const limiter = rateLimit({ windowMs: 1 * 60 * 1000, max: 30 });
 app.use(limiter);
-
-// Application Level Middleware
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ urlencoded: true, extended: true, limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(morgan('dev'));
 
-// Front-End Tagging
-app.use(express.static('frontend/dist'));
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-});
-
-// Managing Back-End API Routing
+// Routes
 app.use('/api/v1', router);
 
 // Exports
