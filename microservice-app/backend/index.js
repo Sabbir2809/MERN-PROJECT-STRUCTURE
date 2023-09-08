@@ -2,9 +2,8 @@
 const app = require("./app");
 const connectDB = require("./src/config/DB");
 
-// Port
+// listen server port
 const PORT = process.env.PORT || 5000;
-// Listen
 app.listen(PORT, async () => {
   // MongoDB Connection
   await connectDB();

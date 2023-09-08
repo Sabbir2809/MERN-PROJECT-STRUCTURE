@@ -2,12 +2,10 @@
 const app = require("./app");
 const connectDB = require("./src/config/DB");
 
-// Server Port
+// listen server port
 const PORT = process.env.PORT || 5000;
-
-// Listen
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   // MongoDB Connection
-  connectDB();
+  await connectDB();
   console.log(`Server is Running at http://localhost:${PORT}`);
 });
