@@ -1,5 +1,3 @@
 # Backend (Server Side)
 
-Main Package: `npm install express express-rate-limit cors helmet npp mongoose express-mongo-sanitize dotenv jsonwebtoken bcrypt`
-
-DevDependencies Package: `npm install -D nodemon morgan`
+Main Package: `npm install express cors mongoose dotenv jsonwebtoken bcrypt express-rate-limit helmet npp  express-mongo-sanitize nodemon`
